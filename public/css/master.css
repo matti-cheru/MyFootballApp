@@ -1,0 +1,41 @@
+            html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+                overflow-y: auto; /* Permette lo scroll verticale quando il contenuto lo richiede */
+                overflow-x: hidden; /* Nasconde lo scroll orizzontale se non necessario */
+            }
+            body {
+                display: flex;
+                flex-direction: column;
+                padding-top: 70px; /* Sposta il contenuto sotto la navbar fissa. Aggiusta questo valore se la navbar ha un'altezza diversa. */
+            }
+            .content-wrapper {
+                flex-grow: 1; /* Permette al contenuto principale di espandersi */
+                position: relative;
+                overflow-y: auto; /* Permette lo scroll interno se il contenuto specifico della pagina è troppo lungo */
+                overflow-x: hidden;
+            }
+            footer {
+                flex-shrink: 0; /* Impedisce al footer di ridursi */
+            }
+            .navbar {
+                position: fixed; /* Rende la navbar fissa in alto */
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1030; /* Assicura che sia sopra gli altri elementi */
+            }
+
+            .page-header-content {
+                padding-top: 20px; /* Spazio sotto la navbar per breadcrumb e titolo */
+                margin-top: 20px;
+                border-bottom: 1px solid #dee2e6; /* Linea sottile per separare l'header dal contenuto */
+                box-shadow: 0 2px 4px rgba(0,0,0,.02); /* Leggera ombra per un effetto più moderno */
+            }
+            .page-header-content .breadcrumb {
+                margin-bottom: 0;
+            }
+            .page-header-content .header-sezione {
+                margin-top: 15px;
+            }

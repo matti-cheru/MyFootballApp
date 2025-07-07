@@ -1,0 +1,662 @@
+/* Stili per i link attivi della navbar (sezione li a.active) */
+li a.active {
+    background-color: transparent; /* Assicurati che lo sfondo sia trasparente */
+    border-bottom: 2px solid #a8a8a8; /* Bordo grigio chiaro sotto il link */
+    padding-bottom: 3px; /* Piccolo padding per non attaccare il bordo al testo */
+    color: #a8a8a8 !important; /* Colore del testo leggermente grigio come per l'hover */
+}
+
+/* Stili generali del Body */
+body {
+    max-width: 100%;
+    margin-left: 0%;
+    /* Questo padding-top verrà gestito da master.blade.php o da stili più specifici */
+    /* padding-top: 70px; */ 
+}
+
+/* Stili per citazioni */
+div.citazione {
+    text-align: justify;
+}
+
+div.citazione > blockquote > p {
+    font-style: italic;
+}
+
+/* Stile per gli header di sezione */
+.header-sezione {
+    border-bottom: 2px solid #357ebd;
+    margin-bottom: 2em;
+}
+
+/* Stile per il brand della navbar (logo) */
+.navbar-brand {
+    display: inline-block;
+    text-indent: -9999px; /* Nasconde il testo */
+    width: 160px;
+    background: url(../img/pallone.jpeg) center center no-repeat;
+    background-size: contain; /* Assicura che l'immagine sia contenuta */
+}
+
+/* Stili per messaggi di conferma e input invalidi */
+.confirm {
+    font-size: 1.25rem; 
+    line-height: 1.6; 
+    margin-bottom: 1.5rem; 
+    font-style: italic;
+}
+
+.invalid-input {
+    color: #bd2626;
+    font-weight: bold;
+}
+
+/* --- Animazioni --- */
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.animated {
+    animation-duration: 0.8s;
+    animation-fill-mode: both;
+}
+
+.fadeInRight {
+    animation-name: fadeInRight;
+}
+
+.fadeIn {
+    animation-name: fadeIn;
+}
+
+/* --- Stili per il Carosello di Background (HomePage) --- */
+.background-carousel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.background-carousel .carousel-inner {
+    width: 100%;
+    height: 100%;
+}
+
+.background-carousel .carousel-item {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.background-carousel .carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(60%);
+    transform: scale(1);
+    transition: transform 6s ease-in-out, filter 1s ease-in-out;
+}
+
+.background-carousel .carousel-item.active .carousel-image {
+    transform: scale(1.1);
+}
+
+.background-carousel .carousel-control-prev,
+.background-carousel .carousel-control-next,
+.background-carousel .carousel-indicators {
+    display: none;
+}
+
+/* --- Contenuto in Primo Piano (Testi e Bottoni sull'Immagine) --- */
+.overlay-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    /* Assicurati che l'overlay-content inizi sotto la navbar e finisca prima del footer */
+    /* Queste proprietà sono state spostate da qui e gestite da master.blade.php per coerenza */
+    /* padding-top: calc(70px + 20px); */
+    /* height: calc(100% - 70px - 70px); */
+}
+
+.overlay-content .slide-content {
+    position: absolute;
+    width: 80%;
+    max-width: 800px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.overlay-content .slide-content.active-slide-content {
+    opacity: 1;
+}
+
+.overlay-content h5 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    line-height: 1.2;
+}
+
+.overlay-content p {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+.overlay-content .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    font-size: 1.5rem;
+    padding: 15px 40px;
+    border-radius: 50px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.overlay-content .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Indicatori di navigazione nell'overlay del carosello */
+.carousel-indicators-overlay {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.carousel-indicators-overlay button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    margin: 0 6px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.carousel-indicators-overlay button.active {
+    background-color: #fff;
+    border-color: #fff;
+}
+
+/* --- Stili per la Navbar (modificato per leggibilità) --- */
+#mainNavbar {
+    /* Sfondo scuro per una leggibilità garantita */
+    background-color: #212529; /* Sfondo scuro di Bootstrap, puoi cambiarlo */
+    /* Rimosso backdrop-filter e border-bottom di "frosted glass" per semplicità e leggibilità */
+    border-bottom: none !important; /* Rimuove qualsiasi bordo residuo */
+    box-shadow: none !important; /* Rimuove qualsiasi ombra residua */
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1030;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    transition: background-color 0.3s ease, padding 0.3s ease;
+}
+
+/* Stili per i link della navbar (testo bianco) */
+#mainNavbar .navbar-nav .nav-link,
+#mainNavbar .navbar-brand,
+#mainNavbar .navbar-nav .nav-item i {
+    color: #ffffff !important; /* Testo bianco per massima leggibilità */
+    text-shadow: none; /* Rimosso l'ombra che potrebbe creare artefatti su sfondo solido */
+    transition: color 0.3s ease;
+}
+
+#mainNavbar .navbar-nav .nav-link:hover,
+#mainNavbar .navbar-nav .nav-link.active {
+    color: #a8a8a8 !important; /* Colore più chiaro o grigio per l'hover/active */
+}
+
+/* Stile per l'icona del toggler (hamburger menu) */
+#mainNavbar .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+#mainNavbar .navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* --- Stili per le Dropdown della Navbar --- */
+/* Assicurati che le dropdown della navbar siano visibili su sfondi scuri */
+.navbar-dark .dropdown-menu {
+    background-color: #343a40; /* Sfondo scuro per il dropdown, coerente con la navbar */
+    border: none;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.navbar-dark .dropdown-menu .dropdown-item {
+    color: #f8f9fa; /* Testo chiaro per gli elementi del dropdown */
+}
+
+.navbar-dark .dropdown-menu .dropdown-item:hover,
+.navbar-dark .dropdown-menu .dropdown-item:focus {
+    background-color: #495057; /* Sfondo al hover per il dropdown */
+    color: #fff;
+}
+
+
+/* --- Stili per il Breadcrumb e il Titolo della Pagina (sezione page-header-content) --- */
+/* Questa è la barra contenente "Home > My Centre > Lista Campi" e il titolo H1 */
+/* Ho rinominato la classe da .page-header-content a .breadcrumb-section per chiarezza,
+   ma il tuo Blade userà ancora .page-header-content. Assicurati che Blade sia aggiornato
+   o ripristina la classe CSS al nome originale. Per ora, lascio il nome originale. */
+.page-header-content { /* Usiamo il nome che avevi in Blade */
+    background-color: rgba(0, 0, 0, 0.5); /* Sfondo semi-trasparente scuro */
+    backdrop-filter: blur(5px); /* Effetto sfocato (frosted glass) */
+    -webkit-backdrop-filter: blur(5px);
+    padding: 15px 0; /* Padding interno */
+    margin-top: 70px; /* Sposta il breadcrumb sotto la navbar fissa */
+    width: 100%; /* Occupa tutta la larghezza */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Ombra leggera */
+    color: #e0e0e0; /* Colore testo chiaro */
+}
+
+/* Stili per i singoli elementi del breadcrumb */
+.page-header-content .breadcrumb {
+    margin-bottom: 0;
+    background-color: transparent;
+    padding: 0;
+}
+
+.page-header-content .breadcrumb-item {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.page-header-content .breadcrumb-item a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.page-header-content .breadcrumb-item a:hover {
+    color: #007bff;
+}
+
+.page-header-content .breadcrumb-item.active {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Stile per il titolo della pagina all'interno del breadcrumb */
+.page-header-content .header-sezione h1 { /* Ho aggiunto h1 per specificità */
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 10px;
+    margin-bottom: 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+
+/* --- CONTENITORE PRINCIPALE DELLA PAGINA (LA "CARD" SCURA) --- */
+.custom-container {
+    background-color: rgba(0, 0, 0, 0.75);
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    color: #e0e0e0;
+    min-height: auto; /* Mantenuto per flessibilità */
+    height: auto; /* Mantenuto per flessibilità */
+    padding-bottom: 40px; /* Spazio sotto il contenuto e la paginazione */
+}
+
+/* MESSAGGIO "NON CI SONO CAMPI DISPONIBILI" */
+.no-fields-message {
+    background-color: rgba(45, 45, 45, 0.8);
+    color: #f8d7da;
+    border-color: rgba(189, 38, 38, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* --- STILI PER LA BARRA DI RICERCA --- */
+.search-input-group .btn {
+    border-radius: 0.375rem 0 0 0.375rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.search-input-group .btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #fff;
+}
+
+.custom-search-input {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: none;
+    border-radius: 0 0.375rem 0.375rem 0;
+    padding: 0.75rem 1.25rem;
+}
+
+.custom-search-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.custom-search-input:focus {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+
+/* Dropdown menu della ricerca */
+.input-group .dropdown-menu {
+    background-color: rgba(25, 25, 25, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.input-group .dropdown-item {
+    color: #e0e0e0;
+}
+
+.input-group .dropdown-item:hover,
+.input-group .dropdown-item:focus {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.input-group .dropdown-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+/* --- STILI PER I BOTTONI DI AZIONE (NON TABELLA) --- */
+.custom-btn-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.custom-btn-icon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.custom-btn-icon.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: #fff;
+}
+.custom-btn-icon.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.custom-btn-icon.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+}
+.custom-btn-icon.btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+
+/* --- STILI PER LA TABELLA --- */
+.custom-table-container {
+    background-color: rgba(0, 0, 0, 0.75);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    overflow-x: auto;
+    overflow-y: visible; /* Mantenuto per flessibilità */
+}
+
+.custom-table {
+    width: 100%;
+    margin-bottom: 0;
+    color: #e0e0e0;
+}
+
+.custom-table thead th {
+    background-color: rgba(0, 123, 255, 0.2);
+    color: #fff;
+    border-bottom: 2px solid #007bff;
+    padding: 15px;
+    text-transform: uppercase;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.custom-table tbody tr {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.custom-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.custom-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+}
+
+.custom-table tbody td {
+    padding: 15px;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+/* Stili per i bottoni di azione all'interno della tabella */
+.custom-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.custom-action-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.custom-action-btn.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    color: #fff;
+}
+.custom-action-btn.btn-info:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+}
+
+.custom-action-btn.btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #212529;
+}
+.custom-action-btn.btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #d39e00;
+}
+
+.custom-action-btn.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #fff;
+}
+.custom-action-btn.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.custom-action-btn.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+}
+.custom-action-btn.btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+
+/* --- STILI PER LA PAGINAZIONE --- */
+.custom-pagination .page-item .page-link {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border-radius: 8px;
+    margin: 0 5px;
+    transition: all 0.2s ease;
+}
+
+.custom-pagination .page-item .page-link:hover {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.custom-pagination .page-item.disabled .page-link {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.1);
+    cursor: not-allowed;
+}
+
+.custom-select-pagination {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border-radius: 8px;
+    padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5L8 11L14 5'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+}
+
+.custom-select-pagination option {
+    background-color: #212529;
+    color: #fff;
+}
+
+/* --- Media Queries per la Responsività --- */
+@media (max-width: 992px) {
+    .overlay-content h5 {
+        font-size: 2.5rem;
+    }
+    .overlay-content p {
+        font-size: 1.4rem;
+    }
+    .overlay-content .btn-primary {
+        font-size: 1.2rem;
+        padding: 12px 30px;
+    }
+
+    /* Navbar Mobile */
+    #mainNavbar .navbar-collapse {
+        background-color: rgba(0, 0, 0, 0.85); /* Sfondo più scuro per il menu mobile aperto */
+        padding: 15px;
+        border-radius: 5px;
+        margin-top: 10px;
+    }
+    #mainNavbar .navbar-nav {
+        text-align: center;
+    }
+    #mainNavbar .navbar-nav .nav-item {
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 768px) {
+    .overlay-content h5 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+    .overlay-content p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+    .overlay-content .btn-primary {
+        font-size: 1rem;
+        padding: 10px 25px;
+    }
+    .carousel-indicators-overlay button {
+        width: 10px;
+        height: 10px;
+        margin: 0 4px;
+    }
+
+    /* Regola il titolo nella breadcrumb per mobile */
+    .page-header-content .header-sezione h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .overlay-content h5 {
+        font-size: 1.5rem;
+    }
+    .overlay-content p {
+        font-size: 0.9rem;
+    }
+    .overlay-content .btn-primary {
+        font-size: 0.9rem;
+        padding: 8px 20px;
+    }
+}
