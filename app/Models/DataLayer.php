@@ -66,7 +66,11 @@ class DataLayer extends Model
     public function deleteField($id)
     {
         $field = Field::find($id);
-        $field->delete();
+        if($field) {
+            $field->delete();
+            return true;
+        }
+        return false;
     }
 
     public function listReservations()
@@ -152,15 +156,6 @@ class DataLayer extends Model
             return true;
         }
         return false;
-    }
-
-    public function deleteBook($id) {
-        $book = Book::find($id);
-        $categories = $book->categories;
-        foreach($categories as $cat) {
-            $book->categories()->detach($cat->id);
-        }
-        $book->delete();
     }
 
     public function validUser($email, $password)

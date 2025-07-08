@@ -27,7 +27,7 @@
                     <p class="card-text mb-4"><strong>Ora:</strong> {{ \Carbon\Carbon::parse($reservation->ora_inizio)->format('H:i') }} - {{ \Carbon\Carbon::parse($reservation->ora_fine)->format('H:i') }}</p> {{-- Formattazione ora --}}
 
                     <div class="d-grid gap-3"> {{-- Utilizza d-grid per pulsanti a tutta larghezza e con spazio --}}
-                        <form name="reservation" method="post" action="{{ route('reservation.destroy', ['reservation' => $reservation->id]) }}">
+                        <form name="reservation" method="post" action="{{ route('reservation.reject', ['id' => $reservation->id]) }}">
                             @method('DELETE')
                             @csrf
                             <label for="mySubmit" class="btn btn-danger btn-lg w-100 custom-btn-icon"> {{-- Pulsante a tutta larghezza --}}

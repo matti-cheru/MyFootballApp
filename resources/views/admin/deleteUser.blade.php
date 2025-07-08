@@ -45,7 +45,7 @@
             </div>
         </div>
 
-        <form name="deletePlayer" method="post" action="{{ route('users.destroy', ['user' => $player->id]) }}" id="deletePlayerForm" class="mt-4">
+        <form name="deletePlayer" method="post" action="{{ route('users.destroy', ['id' => $player->id]) }}" id="deletePlayerForm" class="mt-4">
             @method('DELETE')
             @csrf
 

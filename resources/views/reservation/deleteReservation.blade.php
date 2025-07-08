@@ -31,7 +31,7 @@
                 <i class="bi bi-box-arrow-left"></i> Annulla
             </a>
 
-            <form name="reservation_delete_form" method="post" action="{{ route('reservation.destroy', ['reservation' => $reservation->id]) }}" class="d-inline">
+            <form name="reservation_delete_form" method="post" action="{{ route('reservation.destroy', ['id' => $reservation->id]) }}" class="d-inline">
                 @method('DELETE')
                 @csrf
                 <label for="submit_delete_button" class="btn btn-danger custom-btn-icon text-center mb-0">

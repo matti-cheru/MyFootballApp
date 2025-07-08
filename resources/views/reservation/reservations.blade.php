@@ -68,7 +68,7 @@
                                     @if(isset($_SESSION["logged"]) && $_SESSION["logged"] && $_SESSION["role"] === "admin")
                                         <td>{{ $reservation->user->name }}</td>
                                         <td>
-                                            <a href="{{ route('reservation.show', ['reservation' => $reservation->id]) }}" class="btn btn-info btn-sm custom-btn-icon" title="Gestisci Prenotazione">
+                                            <a href="{{ route('reservation.show', ['id' => $reservation->id]) }}" class="btn btn-info btn-sm custom-btn-icon" title="Gestisci Prenotazione">
                                                 <i class="bi bi-info-circle"></i> Gestisci
                                             </a>
                                         </td>
@@ -89,7 +89,7 @@
                                             @endif
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ route('reservation.edit', ['reservation' => $reservation->id]) }}" class="btn btn-primary btn-sm custom-btn-icon" title="Modifica Prenotazione">
+                                            <a href="{{ route('reservation.edit', ['id' => $reservation->id]) }}" class="btn btn-primary btn-sm custom-btn-icon" title="Modifica Prenotazione">
                                                 <i class="bi bi-pencil-square"></i> Modifica
                                             </a>
                                         </td>

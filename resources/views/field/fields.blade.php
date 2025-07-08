@@ -114,12 +114,12 @@
                             <td>{{ $field->nome_campo }}</td>
                             <td>{{ $field->surface->nome }}</td>
                             <td class="d-flex justify-content-center flex-wrap gap-2">
-                                <a class="btn custom-action-btn btn-info" href="{{ route('field.show', ['field' => $field->id]) }}">
+                                <a class="btn custom-action-btn btn-info" href="{{ route('field.show', ['id' => $field->id]) }}">
                                     <i class="bi bi-info-circle"></i> Dettagli
                                 </a>
                                 @if((isset($_SESSION["logged"]))&&($_SESSION["logged"]))
                                     @if($_SESSION["role"] === "admin")
-                                        <a class="btn custom-action-btn btn-warning" href="{{ route('field.edit', ['field' => $field->id]) }}">
+                                        <a class="btn custom-action-btn btn-warning" href="{{ route('field.edit', ['id' => $field->id]) }}">
                                             <i class="bi bi-pencil-square"></i> Modifica
                                         </a>
                                         <a class="btn custom-action-btn btn-danger" href="{{ route('field.destroy.confirm', ['id' => $field->id]) }}">

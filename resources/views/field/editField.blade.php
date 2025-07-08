@@ -145,7 +145,7 @@
         </div>
         <div class="card-body">
             @if(isset($field->id))
-                <form class="form-horizontal" name="field" method="post" action="{{ route('field.update', ['field' => $field->id]) }}">
+                <form class="form-horizontal" name="field" method="post" action="{{ route('field.update', ['id' => $field->id]) }}">
                 @method('PUT')
             @else
                 <form class="form-horizontal" name="field" method="post" action="{{ route('field.store') }}">

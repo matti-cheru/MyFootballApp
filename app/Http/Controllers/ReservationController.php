@@ -118,7 +118,7 @@ class ReservationController extends Controller
         }
     }
 
-    public function accept($id)
+    public function accept(string $id)
     {
         $dl = new DataLayer();
         $reservation = $dl->findReservationById($id);
@@ -127,24 +127,28 @@ class ReservationController extends Controller
             $reservation->stato = 'accettata';
             $dl->saveReservation($reservation); 
 
-            return Redirect::to(route('home'))->with('success', 'La prenotazione è stata Accettata');
+            return Redirect::to(route('home'))->with('success', 'La prenotazione è stata accettata!');
         } else {
             return view('errors.404')->with('message','Wrong reservation ID has been used');
         }
     }
 
-    public function reject($id)
+    public function reject(string $id) {
+        $dl = new DataLayer();
+        $dl->deleteReservation($id);
+
+        return Redirect::to(route('home'))->with('error', 'La prenotazione è stata rifiutata!');
+    }
+
+    public function confirmReject(string $id)
     {
         $dl = new DataLayer();
         $reservation = $dl->findReservationById($id);
 
         if($reservation !== null) {
-            $reservation->stato = 'rifiutata';
-            $reservation->save();
-
             return view('reservation.rejectReservation')->with('reservation', $reservation);           
         } else {
-            return view('errors.404')->with('message','Wrong field ID has been used');
+            return view('errors.404')->with('message','Wrong reservation ID has been used');
         }
     }
 

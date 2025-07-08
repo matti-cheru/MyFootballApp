@@ -4,13 +4,6 @@
 
 @section('header','Modifica la tua prenotazione') {{-- Ho lasciato l'header come hai specificato tu inizialmente --}}
 
-@section('breadcrumb')
-    <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('reservation.index') }}">Reservations</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('reservation.index') }}">Reservations History</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Edit a Reservation</li>
-@endsection
-
 @section('body')
 <script>
     $(document).ready(function(){
@@ -172,7 +165,7 @@
             <h5 class="mb-0 fw-normal"><i class="bi bi-calendar-check-fill me-2"></i>Dettagli Prenotazione</h5> {{-- Icona e testo più adatto --}}
         </div>
         <div class="card-body p-4"> {{-- Aumentato il padding interno --}}
-            <form class="form-horizontal" method="post" action="{{ route('reservation.update', ['reservation' => $reservation->id]) }}" id="reservationForm">
+            <form class="form-horizontal" method="post" action="{{ route('reservation.update', ['id' => $reservation->id]) }}" id="reservationForm">
                 @method('PUT')
                 @csrf
 

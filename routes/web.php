@@ -37,16 +37,19 @@ Route::group(['middleware' => ['authCustom']], function() {
     Route::group(['middleware' => ['isAdmin']], function() {
         Route::get('/field/create', [FieldController::class, 'create'])->name('field.create'); // admin può creare un campo con form
         Route::post('/field', [FieldController::class, 'store'])->name('field.store');         // admin può salvare un campo
-        Route::get('/field/{field}/edit', [FieldController::class, 'edit'])->name('field.edit');  // admin può modificare un campo con form
-        Route::put('/field/{field}', [FieldController::class, 'update'])->name('field.update');   // admin può salvare le modifiche a un campo
-        Route::delete('/field/{field}', [FieldController::class, 'destroy'])->name('field.destroy'); // admin può distruggere un campo
+        Route::get('/field/{id}/edit', [FieldController::class, 'edit'])->name('field.edit');  // admin può modificare un campo con form
+        Route::put('/field/{id}', [FieldController::class, 'update'])->name('field.update');   // admin può salvare le modifiche a un campo
+        Route::delete('/field/{id}', [FieldController::class, 'destroy'])->name('field.destroy'); // admin può distruggere un campo
         Route::get('/field/{id}/destroy/confirm', [FieldController::class, 'confirmDestroy'])->name('field.destroy.confirm'); // rotta custom
         Route::get('/ajaxField', [FieldController::class, 'ajaxCheckForFields']); // Se anche questa è solo per admin
 
-        Route::get('/reservation/{reservation}', [ReservationController::class, 'show'])->name('reservation.show');
+        Route::get('/reservation/{id}', [ReservationController::class, 'show'])->name('reservation.show');
         Route::post('/reservation/{id}/accept', [ReservationController::class, 'accept'])->name('reservation.accept');
-        Route::post('/reservation/{id}/reject/confirm', [ReservationController::class, 'reject'])->name('reservation.reject.confirm');     
+        Route::delete('/reservation/{id}', [ReservationController::class, 'reject'])->name('reservation.reject');
+        Route::post('/reservation/{id}/reject/confirm', [ReservationController::class, 'confirmReject'])->name('reservation.reject.confirm');     
 
+        Route::get('/users', [UserController::class, 'index'])->name('users.index');
+        Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
         Route::get('/users/{id}/destroy/confirm', [UserController::class, 'confirmDestroy'])->name('users.destroy.confirm');
         Route::get('/users/{id}/reservation', [UserController::class, 'showUserReservations'])->name('users.reservations.history');
     });
@@ -56,21 +59,20 @@ Route::group(['middleware' => ['authCustom']], function() {
 
         Route::get('/reseration/create', [ReservationController::class, 'create'])->name('reservation.create');
         Route::post('/reservation', [ReservationController::class, 'store'])->name('reservation.store');
-        Route::get('/reservation/{reservation}/edit', [ReservationController::class, 'edit'])->name('reservation.edit');
-        Route::put('/reservation/{reservation}', [ReservationController::class, 'update'])->name('reservation.update');
+        Route::get('/reservation/{id}/edit', [ReservationController::class, 'edit'])->name('reservation.edit');
+        Route::put('/reservation/{id}', [ReservationController::class, 'update'])->name('reservation.update');
+        Route::delete('/reservation/{id}', [ReservationController::class, 'destroy'])->name('reservation.destroy');
+        Route::get('/reservation/{id}/destroy/confirm', [ReservationController::class, 'confirmDestroy'])->name('reservation.destroy.confirm');
+
         Route::get('/ajaxReservation', [ReservationController::class, 'ajaxCheckForReservations']);
 
         Route::get('/users/{id}/myReservation', [UserController::class, 'showMyReservations'])->name('users.myReservations');   
     });
 
     Route::get('/field', [FieldController::class, 'index'])->name('field.index');
-    Route::get('/field/{field}', [FieldController::class, 'show'])->name('field.show');
+    Route::get('/field/{id}', [FieldController::class, 'show'])->name('field.show');
 
     Route::get('/reservation', [ReservationController::class, 'index'])->name('reservation.index');
-    Route::delete('/reservation/{reservation}', [ReservationController::class, 'destroy'])->name('reservation.destroy');
-    Route::get('/reservation/{id}/destroy/confirm', [ReservationController::class, 'confirmDestroy'])->name('reservation.destroy.confirm');
-
-    Route::resource('users', UserController::class);
 });
 
 

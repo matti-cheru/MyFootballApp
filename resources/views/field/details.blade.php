@@ -38,7 +38,7 @@
                 </div>
                 <div class="col-md-4 d-flex flex-column justify-content-start align-items-stretch gap-2">
                     @if((isset($_SESSION["logged"])) && ($_SESSION["logged"]) && ($_SESSION["role"] === "admin"))
-                        <a class="btn custom-btn-icon btn-warning" href="{{ route('field.edit', ['field' => $field->id]) }}">
+                        <a class="btn custom-btn-icon btn-warning" href="{{ route('field.edit', ['id' => $field->id]) }}">
                             <i class="bi bi-pencil-square"></i> Modifica Campo
                         </a>
                         <a class="btn custom-btn-icon btn-danger" href="{{ route('field.destroy.confirm', ['id' => $field->id]) }}">

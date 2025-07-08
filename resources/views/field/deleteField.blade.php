@@ -33,7 +33,7 @@
                 <i class="bi bi-box-arrow-left"></i> Annulla
             </a>
 
-            <form name="field_delete_form" method="post" action="{{ route('field.destroy', ['field' => $field->id]) }}" class="d-inline">
+            <form name="field_delete_form" method="post" action="{{ route('field.destroy', ['id' => $field->id]) }}" class="d-inline">
                 @method('DELETE')
                 @csrf
                 <label for="submit_delete_button" class="btn btn-danger custom-btn-icon text-center mb-0">
