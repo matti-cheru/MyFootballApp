@@ -26,9 +26,6 @@
                 $("#paginationNav").hide();
             } else {
                 $("#paginationNav").show();
-                // Le righe per la paginazione sono commentate poiché gestita altrove.
-                // currentPage = 1;
-                // showPage(currentPage);
                 return;
             }
 
