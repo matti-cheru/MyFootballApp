@@ -35,7 +35,7 @@
         <div class="card-body p-0">
             @if($reservations->isEmpty())
                 <div class="alert alert-info m-3" role="alert">
-                    <i class="bi bi-info-circle-fill me-2"></i> Questo utente non ha ancora effettuato nessuna prenotazione.
+                    <i class="bi bi-info-circle-fill me-2"></i> Non hai ancora effettuato nessuna prenotazione.
                 </div>
             @else
                 <div class="table-responsive">

@@ -15,22 +15,6 @@ Route::get('/user/logout', [AuthController::class, 'logout'])->name('user.logout
 Route::post('/user/register', [AuthController::class, 'registration'])->name('user.register');
 Route::get('/ajaxUser', [AuthController::class, 'ajaxCheckForEmail']);
 
-/*Route::group(['middleware' => ['authCustom','isRegisteredPlayer']], function() {
-    Route::resource('field', FieldController::class);
-    Route::get('/field/{id}/destroy/confirm', [FieldController::class, 'confirmDestroy'])->name('field.destroy.confirm');
-    Route::get('/field/{id}/book', [FieldController::class, 'bookThisField'])->name('field.book');
-    Route::get('/ajaxField', [FieldController::class, 'ajaxCheckForFields']);
-
-    Route::resource('reservation', ReservationController::class);
-    Route::get('/reservation/{id}/destroy/confirm', [ReservationController::class, 'confirmDestroy'])->name('reservation.destroy.confirm');
-    Route::post('/reservation/{id}/accept', [ReservationController::class, 'accept'])->name('reservation.accept');
-    Route::post('/reservation/{id}/reject/confirm', [ReservationController::class, 'reject'])->name('reservation.reject.confirm');
-    Route::get('/reservations', [ReservationController::class, 'manage'])->name('reservation.manage');
-    Route::get('/ajaxReservation', [ReservationController::class, 'ajaxCheckForReservations']);
-});
-
-Route::resource('category', CategoryController::class)->middleware(['authCustom', 'isAdmin']);
-*/
 
 Route::group(['middleware' => ['authCustom']], function() {
 

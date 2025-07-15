@@ -153,7 +153,7 @@
                 var errorMessage = "{{ Session::get('error') }}";
                 if (errorMessage) {
                     $('#errorModalMessage').text(errorMessage);
-                    $('#errorModalMessage').html(errorMessage.replace(/\n/g, '<br>')); // Per messaggi multi-linea
+                    $('#errorModalMessage').html(errorMessage.replace(/\n/g, '<br>'));
                     var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
                     errorModal.show();
                 }
