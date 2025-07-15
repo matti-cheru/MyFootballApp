@@ -9,7 +9,7 @@
 @section('active_MyCentre','active')
 
 @section('body')
-<div class="container custom-container mt-4 mb-5"> {{-- Container per limitare la larghezza e centrare --}}
+<div class="container custom-container mt-4 mb-5">
 
     <nav aria-label="Page navigation" id="paginationNav" class="mt-4 mb-4">
         <ul class="pagination justify-content-center custom-pagination">

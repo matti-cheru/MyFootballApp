@@ -32,7 +32,7 @@
     <div class="container custom-container mt-4 mb-5">
 
         <div class="alert alert-warning shadow-sm" role="alert">
-            <i class="bi bi-exclamation-triangle-fill me-2"></i> Sei sicuro di voler eliminare questo giocatore? Questa azione **non può essere annullata**.
+            <i class="bi bi-exclamation-triangle-fill me-2"></i> Sei sicuro di voler eliminare questo giocatore? Questa azione <strong>non può essere annullata</strong>.
         </div>
 
         <div class="card shadow-sm mt-4">
@@ -51,11 +51,11 @@
 
             <div class="mb-3">
                 <label for="motivation" class="form-label">Motivazione dell'eliminazione (obbligatoria):</label>
-                <textarea class="form-control" id="motivation" name="motivation" rows="4" placeholder="Spiega dettagliatamente il motivo per cui stai eliminando questo giocatore."></textarea>
+                <textarea class="form-control" id="motivation" name="motivation" rows="4" placeholder="Spiega il motivo per cui stai eliminando questo giocatore."></textarea>
                 <div class="invalid-feedback" id="invalid-motivation"></div>
             </div>
 
-            <div class="d-flex justify-content-end gap-2 mt-4"> {{-- Allineamento a destra dei bottoni --}}
+            <div class="d-flex justify-content-end gap-2 mt-4">
                 <a class="btn btn-secondary custom-btn-icon" href="{{ route('users.index') }}">
                     <i class="bi bi-x-circle me-2"></i> Annulla
                 </a>

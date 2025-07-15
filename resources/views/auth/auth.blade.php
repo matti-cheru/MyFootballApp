@@ -7,26 +7,37 @@
 @section('body')
 <script>
     $(document).ready(function(){
+        // Funzione per gestire il toggle della password con il selettore del pulsante
+        $(document).on('click', '.password-toggle-btn', function() {
+            var targetId = $(this).data('target');
+            var passwordInput = $('#' + targetId);
+            var toggleIcon = $(this).find('i');
+
+            if (passwordInput.attr('type') === 'password') {
+                passwordInput.attr('type', 'text');
+                toggleIcon.removeClass('bi-eye-slash').addClass('bi-eye');
+            } else {
+                passwordInput.attr('type', 'password');
+                toggleIcon.removeClass('bi-eye').addClass('bi-eye-slash');
+            }
+        });
+
         $("#login-form").submit(function(event) {
-            // Ottenere i valori dei campi email e password
             var email = $("input[name='email']").val();
             var password = $("input[name='password']").val();
             var error = false;
 
-            // Pulisci i messaggi di errore precedenti
             $("#invalid-email").text("");
             $("#invalid-password").text("");
             $("input[name='email']").removeClass('is-invalid');
             $("input[name='password']").removeClass('is-invalid');
 
-            // Verifica se il campo "password" è vuoto
             if (password.trim() === "") {
                 error = true;
                 $("#invalid-password").text("La password è obbligatoria.");
                 $("input[name='password']").addClass('is-invalid');
             }
 
-            // Verifica se il campo "email" è vuoto
             if (email.trim() === "") {
                 error = true;
                 $("#invalid-email").text("L'indirizzo email è obbligatorio.");
@@ -34,8 +45,7 @@
             }
 
             if (error) {
-                event.preventDefault(); // Impedisce l'invio del modulo
-                // Se c'è un errore, metti il focus sul primo campo invalido
+                event.preventDefault();
                 if (email.trim() === "") {
                     $("input[name='email']").focus();
                 } else if (password.trim() === "") {
@@ -45,17 +55,13 @@
         });
 
         $("#register-form").submit(function(event) {
-            // Ottenere i valori dei campi per la registrazione
             var name = $("input[name='name']").val();
             var email = $("input[name='registration-email']").val();
             var password = $("input[name='registration-password']").val();
-            // Espressione regolare per la password (almeno 8 caratteri, almeno una cifra, almeno
-            // un carattere speciale tra ! - * [ ] $ & /)
             var passwordRegex = /^(?=.*[0-9])(?=.*[!-\*\[\]\$&\/]).{8,}$/;
             var confirmPassword = $("input[name='confirm-password']").val();
             var error = false;
 
-            // Pulisci i messaggi di errore precedenti e rimuovi le classi di invalidità
             $("#invalid-name").text("");
             $("#invalid-registrationEmail").text("");
             $("#invalid-registrationPassword").text("");
@@ -65,7 +71,6 @@
             $("input[name='registration-password']").removeClass('is-invalid');
             $("input[name='confirm-password']").removeClass('is-invalid');
 
-            // Validazioni in ordine inverso per il focus corretto
             if (confirmPassword.trim() === "") {
                 error = true;
                 $("#invalid-confirmPassword").text("La re-immissione della password è obbligatoria.");
@@ -95,8 +100,7 @@
             }
 
             if (error) {
-                event.preventDefault(); // Impedisce l'invio del modulo
-                // Imposta il focus sul primo campo con errore
+                event.preventDefault();
                 if (name.trim() === "") {
                     $("input[name='name']").focus();
                 } else if (email.trim() === "") {
@@ -106,14 +110,13 @@
                 } else if (confirmPassword.trim() === "") {
                     $("input[name='confirm-password']").focus();
                 }
-                return; // Ferma l'esecuzione se ci sono errori di validazione iniziali
+                return;
             }
 
-            // Verifica che la password sia stata digitata due volte correttamente
             if(confirmPassword.trim() !== password.trim()) {
                 $("#invalid-confirmPassword").text("Le password immesse non corrispondono.");
                 $("input[name='confirm-password']").addClass('is-invalid');
-                event.preventDefault(); // Impedisce l'invio del modulo
+                event.preventDefault();
                 $("input[name='confirm-password']").focus();
                 return;
             } else {
@@ -121,11 +124,10 @@
                 $("input[name='confirm-password']").removeClass('is-invalid');
             }
 
-            // Effettua chiamata AJAX per verificare che l'email dell'utente non sia già presente nel DB
-            event.preventDefault(); // Impedisce preventivamente l'invio del modulo prima del controllo AJAX
+            event.preventDefault();
             $.ajax({
                 type: 'GET',
-                url: '/ajaxUser', // Assicurati che questa route sia corretta e gestisca la verifica email
+                url: '/ajaxUser',
                 data: {email: email.trim()},
                 success: function (data) {
                     if (data.found) {
@@ -134,13 +136,11 @@
                     } else {
                         $("#invalid-registrationEmail").text("");
                         $("input[name='registration-email']").removeClass('is-invalid');
-                        // Se tutti i controlli passano, invia il modulo di registrazione
-                        $("#register-form")[0].submit(); // [0] per accedere all'elemento DOM del form
+                        $("#register-form")[0].submit();
                     }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.error("AJAX error: " + textStatus, errorThrown);
-                    // Gestisci l'errore AJAX, ad esempio mostrando un messaggio all'utente
                     $("#invalid-registrationEmail").text("Si è verificato un errore durante la verifica dell'email.");
                     $("input[name='registration-email']").addClass('is-invalid');
                 }
@@ -180,9 +180,17 @@
                                     <div class="invalid-feedback d-block" id="invalid-email"></div>
                                 </div>
 
-                                <div class="form-floating mb-3">
-                                    <input type="password" name="password" class="form-control" id="loginPassword" placeholder="Password..."/>
-                                    <label for="loginPassword">Password</label>
+                                {{-- Blocco Password Login con soluzione ottimizzata --}}
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <div class="form-floating flex-grow-1">
+                                            <input type="password" name="password" class="form-control rounded-end-0" id="loginPassword" placeholder="Password..."/>
+                                            <label for="loginPassword">Password</label>
+                                        </div>
+                                        <button class="btn btn-dark password-toggle-btn rounded-start-0" type="button" data-target="loginPassword">
+                                            <i class="bi bi-eye-slash"></i>
+                                        </button>
+                                    </div>
                                     <div class="invalid-feedback d-block" id="invalid-password"></div>
                                 </div>
 
@@ -191,7 +199,6 @@
                                         <i class="bi bi-door-open-fill me-2"></i> Accedi
                                     </button>
                                 </div>
-
                             </form>
                         </div>
 
@@ -210,16 +217,32 @@
                                     <div class="invalid-feedback d-block" id="invalid-registrationEmail"></div>
                                 </div>
 
-                                <div class="form-floating mb-3">
-                                    <input type="password" name="registration-password" class="form-control" id="registerPassword" placeholder="Digita password..."/>
-                                    <label for="registerPassword">Password</label>
+                                {{-- Blocco Password Registrazione con soluzione ottimizzata --}}
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <div class="form-floating flex-grow-1">
+                                            <input type="password" name="registration-password" class="form-control rounded-end-0" id="registerPassword" placeholder="Digita password..."/>
+                                            <label for="registerPassword">Password</label>
+                                        </div>
+                                        <button class="btn btn-dark password-toggle-btn rounded-start-0" type="button" data-target="registerPassword">
+                                            <i class="bi bi-eye-slash"></i>
+                                        </button>
+                                    </div>
                                     <div class="invalid-feedback d-block" id="invalid-registrationPassword"></div>
                                     <small class="text-muted">La password deve avere almeno 8 caratteri, inclusa una cifra e un carattere speciale (!-*[]$&/).</small>
                                 </div>
 
-                                <div class="form-floating mb-3">
-                                    <input type="password" name="confirm-password" class="form-control" id="confirmPassword" placeholder="Ripeti password..."/>
-                                    <label for="confirmPassword">Conferma Password</label>
+                                {{-- Blocco Conferma Password Registrazione con soluzione ottimizzata --}}
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <div class="form-floating flex-grow-1">
+                                            <input type="password" name="confirm-password" class="form-control rounded-end-0" id="confirmPassword" placeholder="Ripeti password..."/>
+                                            <label for="confirmPassword">Conferma Password</label>
+                                        </div>
+                                        <button class="btn btn-dark password-toggle-btn rounded-start-0" type="button" data-target="confirmPassword">
+                                            <i class="bi bi-eye-slash"></i>
+                                        </button>
+                                    </div>
                                     <div class="invalid-feedback d-block" id="invalid-confirmPassword"></div>
                                 </div>
 
