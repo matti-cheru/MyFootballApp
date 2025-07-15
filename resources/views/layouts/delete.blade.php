@@ -72,7 +72,7 @@
                         </li>
                         @else
                         <li class="nav-item welcome-message">
-                            <i>Benvenuto **{{ $_SESSION['loggedName'] }}**</i>
+                            Benvenuto {{ $_SESSION['loggedName'] }}
                             <a href="{{ route('user.logout') }}" class="btn btn-outline-light nav-logout-btn ms-2">
                                 <i class="bi bi-box-arrow-right me-2"></i> Esci
                             </a>
