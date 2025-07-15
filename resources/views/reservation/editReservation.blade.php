@@ -193,17 +193,24 @@
                     <div class="col-md-9">
                         <input type="date" class="form-control" id="data_prenotazione" name="data_prenotazione"
                             value="{{ old('data_prenotazione', isset($reservation) ? $reservation->data_prenotazione : '') }}"
-                            data-original-value-data="{{ isset($reservation) ? $reservation->data_prenotazione : '' }}">
+                            data-original-value-data="{{ isset($reservation) ? $reservation->data_prenotazione : '' }}"
+                            min="{{ date('Y-m-d') }}">
                         <div class="invalid-feedback" id="invalid-data-prenotazione"></div>
                     </div>
                 </div>
 
-                <div class="mb-4 row"> {{-- Margine maggiore prima dei pulsanti --}}
-                    <label for="ora_inizio" class="col-md-3 col-form-label">Ora Inizio:</label>
-                    <div class="col-md-9">
-                        <input type="time" class="form-control" id="ora_inizio" name="ora_inizio"
-                            value="{{ old('ora_inizio', isset($reservation) ? \Carbon\Carbon::parse($reservation->ora_inizio)->format('H:i') : '') }}"
-                            data-original-value-ora="{{ isset($reservation) ? \Carbon\Carbon::parse($reservation->ora_inizio)->format('H:i') : '' }}">
+                <div class="mb-4 row"> {{-- Mantiene il margine maggiore come da richiesta originale --}}
+                    <label for="ora_inizio" class="col-md-3 col-form-label">Ora di Inizio:</label> {{-- Mantiene col-md-3 per la label --}}
+                    <div class="col-md-9"> {{-- Mantiene col-md-9 per la selezione --}}
+                        <select class="form-select" id="ora_inizio" name="ora_inizio">
+                            <option value="" disabled selected>Seleziona l'ora di inizio</option>
+                                @for ($hour = 9; $hour <= 21; $hour++)
+                                    <option value="{{ sprintf('%02d:00', $hour) }}"
+                                        {{ (old('ora_inizio') == sprintf('%02d:00', $hour) || (isset($reservation) && \Carbon\Carbon::parse($reservation->ora_inizio)->format('H:i') == sprintf('%02d:00', $hour))) ? 'selected' : '' }}>
+                                        {{ sprintf('%02d:00', $hour) }}
+                                    </option>
+                                @endfor
+                        </select>
                         <div class="invalid-feedback" id="invalid-ora-inizio"></div>
                     </div>
                 </div>

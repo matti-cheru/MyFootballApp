@@ -18,7 +18,7 @@ class DataLayer extends Model
     }
 
     public function listFields() {
-        $fields = Field::orderBy('id')->orderBy('nome_campo')->get();
+        $fields = Field::orderBy('id')->orderBy('nome_campo', 'asc')->get();
         return $fields;
     }
 

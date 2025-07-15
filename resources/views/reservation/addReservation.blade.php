@@ -125,7 +125,7 @@
                 <div class="mb-3 row">
                     <label for="data_prenotazione" class="col-md-2 col-form-label">Data:</label>
                     <div class="col-md-10">
-                        <input type="date" class="form-control" id="data_prenotazione" name="data_prenotazione"/>
+                        <input type="date" class="form-control" id="data_prenotazione" name="data_prenotazione" min="{{ date('Y-m-d') }}"/>
                         <div class="invalid-feedback" id="invalid-data-prenotazione"></div>
                     </div>
                 </div>
@@ -135,7 +135,7 @@
                     <div class="col-md-10">
                         <select class="form-select" id="ora_inizio" name="ora_inizio">
                             <option value="" disabled selected>Seleziona l'ora di inizio</option>
-                            @for ($hour = 9; $hour <= 22; $hour++)
+                            @for ($hour = 9; $hour <= 21; $hour++)
                                 <option value="{{ sprintf('%02d:00', $hour) }}">{{ sprintf('%02d:00', $hour) }}</option>
                             @endfor
                         </select>
@@ -144,7 +144,7 @@
                 </div>
 
                 <div class="mt-4 row">
-                    <div class="col-md-10 offset-md-2 d-grid gap-2"> {{-- Usa d-grid e gap-2 per i bottoni --}}
+                    <div class="col-md-10 offset-md-2 d-grid gap-2">
                         <label for="mySubmit" class="btn btn-primary custom-btn-icon">
                             <i class="bi bi-book"></i> Prenota questo campo
                         </label>
