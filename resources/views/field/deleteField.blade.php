@@ -12,7 +12,7 @@
         </div>
         <div class="card-body">
             <div class="alert alert-warning text-center" role="alert">
-                <i class="bi bi-exclamation-triangle-fill me-2"></i> Sei sicuro di voler rimuovere "<strong>{{ $field->nome_campo }}</strong>"? Questa operazione non può essere annullata.
+                <i class="bi bi-exclamation-triangle-fill me-2"></i> Sei sicuro di voler rimuovere "<strong>{{ $field->nome_campo }}</strong>"? Così facendo eliminerai <strong>tutte</strong> le prenotazioni associate.
             </div>
 
             <div class="card mb-3 border-secondary">

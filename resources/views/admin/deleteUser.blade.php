@@ -32,7 +32,7 @@
     <div class="container custom-container mt-4 mb-5">
 
         <div class="alert alert-warning shadow-sm" role="alert">
-            <i class="bi bi-exclamation-triangle-fill me-2"></i> Sei sicuro di voler eliminare questo giocatore? Questa azione <strong>non può essere annullata</strong>.
+            <i class="bi bi-exclamation-triangle-fill me-2"></i> Sei sicuro di voler eliminare questo giocatore? Così facendo eliminerai <strong>tutte</strong> le prenotazioni associate.
         </div>
 
         <div class="card shadow-sm mt-4">
