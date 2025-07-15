@@ -43,6 +43,8 @@ class DatabaseSeeder extends Seeder
             return;
         }
 
+        $baseDate = Carbon::create(2025, 7, 17); // Inizia dal 17 Luglio 2025
+
         foreach ($registeredPlayers as $user)
         {
             $numberOfReservations = random_int(5, 8);
@@ -57,10 +59,12 @@ class DatabaseSeeder extends Seeder
                 $endHour = ($startHour + 1) % 24;
                 $endTime = sprintf('%02d:00:00', $endHour);
 
+                $reservationDate = $baseDate->copy()->addDays($i * 2);
+
                 Reservation::create([
                     'user_id' => $user->id,
                     'id_campo' => $field->id,
-                    'data_prenotazione' => Carbon::now()->addDays($i * 2)->format('Y-m-d'), // Data futura
+                    'data_prenotazione' => $reservationDate->format('Y-m-d'),
                     'ora_inizio' => $startTime,
                     'ora_fine' => $endTime,
                 ]);
